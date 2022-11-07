@@ -1,3 +1,4 @@
+import { AuthContextProvider } from '@/contexts/AuthContext';
 import {
   useFonts,
   Roboto_400Regular as RobotoRegular,
@@ -15,18 +16,20 @@ export default function App() {
 
   return (
     <NativeBaseProvider theme={theme}>
-      {!fontsLoaded ? (
-        <Loading />
-      ) : (
-        <>
-          <SignIn />
-          <StatusBar
-            barStyle="light-content"
-            backgroundColor="transparent"
-            translucent
-          />
-        </>
-      )}
+      <AuthContextProvider>
+        {!fontsLoaded ? (
+          <Loading />
+        ) : (
+          <>
+            <SignIn />
+            <StatusBar
+              barStyle="light-content"
+              backgroundColor="transparent"
+              translucent
+            />
+          </>
+        )}
+      </AuthContextProvider>
     </NativeBaseProvider>
   );
 }
